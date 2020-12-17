@@ -1,0 +1,78 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block title %} {{post.slug}} {% endblock title %}
+
+{% block body %}
+
+<div class="row mt-4">
+
+  <div class="col-sm-8">
+
+      <div class="card mb-4">
+  <div class="card-header bg-dark text-white" >
+  <i class="fas fa-clipboard"></i>
+   <span class="text-capitalize"> &nbsp;{{post.title}}</span>
+  </div>
+  <div class="card-body">
+    <img src="{{post.image.url}}" class="img-thumbnail" style="width:100%;height: 255px;">
+     <blockquote><p> {{post.content | safe }} </p></blockquote>
+   
+    <blockquote class="blockquote mb-0">
+      <footer class="blockquote-footer">{{post.author}}</footer>
+    </blockquote>
+  </div>
+</div>
+   
+
+</div>
+
+{% if user.is_authenticated %}
+<div class="col-sm-4"><div class="col-sm-12">
+    
+    <div class="card mb-3">
+  <div class="card-header bg-dark border-success text-white ">Profile</div>
+  <div class="card-body">
+     
+   
+   
+    <img class="card-img" src="{% static 'user.png' %}" height="180">
+<hr>
+ <h6 class="card-title text-center text-capitalize">{{user.username}}</h6>
+    <h6 class="text-center">{{user.email}}</h6>
+
+      </div>
+ 
+</div>
+
+  </div>
+</div>
+{% else %}
+
+<div class="col-sm-4"><div class="col-sm-12">
+    
+    <div class="card mb-3">
+  <div class="card-header bg-dark border-success text-white ">Blogs</div>
+  <div class="card-body">
+     
+   
+    <img class="card-img" src="{% static 'user.png' %}" height="180">
+<div class="card-header bg-dark text-center border-success text-white mt-4"> <i class="fa fa-pen"></i> Read Write Share</div>
+ 
+    <h6></h6>
+
+      </div>
+ 
+</div>
+
+  </div>
+</div>
+
+{% endif %}
+
+
+
+</div>
+
+
+{% endblock body %}
